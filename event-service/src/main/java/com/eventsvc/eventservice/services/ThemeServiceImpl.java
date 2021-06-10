@@ -15,7 +15,7 @@ public class ThemeServiceImpl implements ThemeService {
     ThemeRepo thRepo;
 
     @Override
-    public Theme addLieux(Theme t) {
+    public Theme addTheme(Theme t) {
         try {
 
             return thRepo.save(t);
@@ -25,7 +25,7 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
-    public List<Theme> getAllEvents() {
+    public List<Theme> getAllThemes() {
         return thRepo.findAll();
     }
 

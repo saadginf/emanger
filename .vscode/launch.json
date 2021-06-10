@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EventServiceApplication<event-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.eventsvc.eventservice.EventServiceApplication",
+            "projectName": "event-service",
+            "args": ""
+        }
+    ]
+}

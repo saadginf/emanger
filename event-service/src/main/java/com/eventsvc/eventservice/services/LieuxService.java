@@ -9,6 +9,6 @@ public interface LieuxService {
 
     public Lieux getById(Long id);
 
-    public List<Lieux> getAllEvents();
+    public List<Lieux> getAllLieux();
 
 }

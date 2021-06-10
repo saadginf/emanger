@@ -68,6 +68,8 @@ public class Event {
     @Transient
     private MultipartFile file;
     // Lieux
+    @ManyToOne
+    @JoinColumn(name = "ID_LX_EVENT")
     private Lieux lieux;
     // Created at
     @JsonFormat(pattern = "dd-mm-yyyy")

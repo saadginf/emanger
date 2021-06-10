@@ -4,16 +4,16 @@ public class LibbeleExceptionResponse {
 
     private String erreur;
 
-    public LibbeleExceptionResponse(String libelle) {
-        erreur = libelle;
+    public LibbeleExceptionResponse(String error) {
+        erreur = error;
     }
 
-    public String getLibelle() {
+    public String getError() {
         return erreur;
     }
 
-    public void setLibelle(String libelle) {
-        erreur = libelle;
+    public void setError(String error) {
+        erreur = error;
     }
 
 }

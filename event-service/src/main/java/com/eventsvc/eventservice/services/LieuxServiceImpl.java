@@ -29,7 +29,7 @@ public class LieuxServiceImpl implements LieuxService {
     }
 
     @Override
-    public List<Lieux> getAllEvents() {
+    public List<Lieux> getAllLieux() {
         return lRepo.findAll();
     }
 
