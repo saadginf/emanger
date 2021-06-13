@@ -31,12 +31,14 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByTh(Theme th) {
+
         return eRepo.findByThemEvent(th);
+
     }
 
     @Override
     public Event getById(Long id) {
-        return eRepo.getOne(id);
+        return eRepo.findById(id).get();
     }
 
 }

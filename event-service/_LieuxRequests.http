@@ -2,7 +2,7 @@ POST http://localhost:8081/api/events/lieux
 Content-Type : application/json
 
 {
-    "label": "I.Trans"
+    "label": "COIA"
 }
 ###
 GET http://localhost:8081/api/events/lieux HTTP/1.1

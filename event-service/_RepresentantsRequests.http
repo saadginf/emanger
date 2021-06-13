@@ -2,7 +2,7 @@ POST http://localhost:8081/api/events/representants
 Content-Type : application/json
 
 {
-    "label": "Lt Baddaoui"
+    "label": "Cne Berkaoui"
 }
 ###
 GET http://localhost:8081/api/events/representants HTTP/1.1

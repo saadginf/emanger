@@ -25,7 +25,7 @@ public class LieuxServiceImpl implements LieuxService {
 
     @Override
     public Lieux getById(Long id) {
-        return lRepo.getOne(id);
+        return lRepo.findById(id).get();
     }
 
     @Override

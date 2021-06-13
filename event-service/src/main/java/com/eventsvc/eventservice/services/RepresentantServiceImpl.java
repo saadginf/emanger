@@ -31,7 +31,7 @@ public class RepresentantServiceImpl implements RepresentantService {
 
     @Override
     public Representant getById(Long id) {
-        return rRepo.getOne(id);
+        return rRepo.findById(id).get();
     }
 
 }

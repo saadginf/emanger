@@ -31,7 +31,7 @@ public class ThemeServiceImpl implements ThemeService {
 
     @Override
     public Theme findById(Long id) {
-        return thRepo.getOne(id);
+        return thRepo.findById(id).get();
     }
 
 }

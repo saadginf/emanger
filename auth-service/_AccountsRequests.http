@@ -1,0 +1,31 @@
+GET http://localhost:8082/auth/users HTTP/1.1
+####
+POST http://localhost:8082/auth/users
+Content-Type : application/json
+
+{
+    "username": "bad@dt",
+    "password":"123456"
+}
+####
+POST http://localhost:8082/auth/roles
+Content-Type : application/json
+
+{
+    "roleName": "user" 
+   
+}
+####
+POST http://localhost:8082/auth/addRoles
+Content-Type : application/json
+
+{
+    "username": "bad@dt",
+    "role":"user"
+   
+}
+####
+POST http://localhost:8082/login
+Content-Type : application/x-www-form-urlencoded
+
+username=bad@dt&password=123456

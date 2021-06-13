@@ -9,6 +9,36 @@
             "mainClass": "com.eventsvc.eventservice.EventServiceApplication",
             "projectName": "event-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sab.gateway.GatewayApplication",
+            "projectName": "gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaDiscoveryApplication<eureka-discovery>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sab.eurekadiscovery.EurekaDiscoveryApplication",
+            "projectName": "eureka-discovery",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthServiceApplication<auth-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sab.authservice.AuthServiceApplication",
+            "projectName": "auth-service",
+            "args": ""
         }
     ]
 }

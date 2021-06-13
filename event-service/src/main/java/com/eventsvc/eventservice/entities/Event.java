@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -43,13 +44,13 @@ public class Event {
     private String bgColor;
     // start date
 
-    @NotBlank(message = "Champ Obligatoire")
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @NotNull(message = "Champ Obligatoire")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date startDate;
     // end Date
 
-    @NotBlank(message = "Champ Obligatoire")
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @NotNull(message = "Champ Obligatoire")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date endDate;
     // representants
     @ManyToMany
