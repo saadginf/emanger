@@ -39,6 +39,15 @@
             "mainClass": "com.sab.authservice.AuthServiceApplication",
             "projectName": "auth-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MavenWrapperDownloader",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "MavenWrapperDownloader",
+            "args": ""
         }
     ]
 }

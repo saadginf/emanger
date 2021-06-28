@@ -3,7 +3,7 @@ package com.eventsvc.eventservice;
 import com.eventsvc.eventservice.filter.JwtAutoriFilter;
 
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -40,10 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // http.authorizeRequests().antMatchers(HttpMethod.GET,
-        // "/auth/**").hasAuthority("admin");
-        // http.authorizeRequests().antMatchers(HttpMethod.POST,
-        // "/auth/**").hasAuthority("admin");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/events/download/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/events/summary/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/**").hasAuthority("user");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("user");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/**").hasAuthority("user");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new JwtAutoriFilter(), UsernamePasswordAuthenticationFilter.class);
     }

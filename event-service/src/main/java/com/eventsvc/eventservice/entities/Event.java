@@ -45,12 +45,12 @@ public class Event {
     // start date
 
     @NotNull(message = "Champ Obligatoire")
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     // end Date
 
     @NotNull(message = "Champ Obligatoire")
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     // representants
     @ManyToMany
