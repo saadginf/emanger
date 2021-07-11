@@ -9,6 +9,8 @@ import com.eventsvc.eventservice.outils.EventResume;
 public interface EventService {
     public Event addEvent(Event e);
 
+    public Event editEvent(Event e);
+
     public Event getById(Long id);
 
     public List<EventResume> getAllEvents();

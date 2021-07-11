@@ -1,9 +1,5 @@
 package com.sab.authservice;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.sab.authservice.entities.AppRole;
 import com.sab.authservice.entities.AppUser;
 import com.sab.authservice.service.AccountService;
 
@@ -24,24 +20,12 @@ public class AuthServiceApplication {
 	@Bean
 	CommandLineRunner start(AccountService aService) {
 		return args -> {
-			System.out.println("___________CREATION USER __________");
+
 			AppUser user = aService.loadUserByUsername("admin");
 
 			if (user == null) {
-				AppRole roleU = new AppRole();
-				roleU.setRoleName("user");
-				AppRole roleUser = aService.addNewRole(roleU);
-				AppRole roleA = new AppRole();
-				roleA.setRoleName("admin");
-				AppRole roleAdmin = aService.addNewRole(roleA);
-				Collection<AppRole> appRoles = new ArrayList<>();
-				appRoles.add(roleAdmin);
-				appRoles.add(roleUser);
-				AppUser user1 = new AppUser();
-				user1.setAppRoles(appRoles);
-				user1.setUsername("admin");
-				user1.setPassword("admin");
-				aService.addNewUser(user1);
+				System.out.println("___________CREATION ADMIN USER __________");
+				aService.addNewAdmin();
 			}
 		};
 

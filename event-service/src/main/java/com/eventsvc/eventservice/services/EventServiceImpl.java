@@ -74,4 +74,14 @@ public class EventServiceImpl implements EventService {
         return events;
     }
 
+    @Override
+    public Event editEvent(Event e) {
+        Event event = eRepo.getOne(e.getId());
+        event.setActivites(e.getActivites());
+        event.setSuggestions(e.getSuggestions());
+        event.setRepresentants(e.getRepresentants());
+        event.setFileLink(e.getFileLink());
+        return eRepo.save(event);
+    }
+
 }

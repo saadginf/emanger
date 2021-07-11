@@ -25,10 +25,15 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AppUser addNewUser(AppUser aU) {
         // TODO Auto-generated method stub
-
-        String pw = aU.getPassword();
-        aU.setPassword(passwordEncoder.encode(pw));
-        return appUserRepo.save(aU);
+        AppUser check = loadUserByUsername(aU.getUsername());
+        if (check == null) {
+            String pw = aU.getPassword();
+            aU.setPassword(passwordEncoder.encode(pw));
+            AppRole appRole = appRoleRepo.findByRoleName("user");
+            aU.getAppRoles().add(appRole);
+            return appUserRepo.save(aU);
+        } else
+            throw new RuntimeException("user Exist");
     }
 
     @Override
@@ -55,6 +60,17 @@ public class AccountServiceImpl implements AccountService {
     public List<AppUser> listUers() {
         // TODO Auto-generated method stub
         return appUserRepo.findAll();
+    }
+
+    @Override
+    public AppUser addNewAdmin() {
+        // TODO Auto-generated method stub
+        AppUser aU = new AppUser();
+        aU.setUsername("admin");
+        aU.setPassword(passwordEncoder.encode("admin"));
+        AppRole appRole = appRoleRepo.findByRoleName("admin");
+        aU.getAppRoles().add(appRole);
+        return appUserRepo.save(aU);
     }
 
 }

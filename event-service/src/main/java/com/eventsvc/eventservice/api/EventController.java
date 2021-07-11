@@ -6,12 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.eventsvc.eventservice.entities.Event;
 import com.eventsvc.eventservice.entities.Theme;
 import com.eventsvc.eventservice.exceptions.LibbeleException;
 import com.eventsvc.eventservice.outils.EventResume;
 import com.eventsvc.eventservice.outils.PDFGenerator;
 import com.eventsvc.eventservice.services.EventService;
+import com.eventsvc.eventservice.services.MapVAlidationErrorService;
 import com.eventsvc.eventservice.services.ThemeService;
 import org.springframework.http.MediaType;
 
@@ -21,11 +24,13 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,10 +47,13 @@ public class EventController {
     ThemeService thService;
     @Value("${file.upload-event}")
     private String path;
+    @Autowired
+    MapVAlidationErrorService mapVAlidationErrorService;
 
     @PostMapping("")
     public ResponseEntity<?> createSurvey(@RequestPart(required = true) Event e,
             @RequestPart(value = "file", required = false) final MultipartFile file) {
+
         if (!file.isEmpty()) {
             if (!file.getContentType()
                     .equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
@@ -62,6 +70,41 @@ public class EventController {
                 ex.printStackTrace();
             }
         }
+        return new ResponseEntity<String>("bay", HttpStatus.OK);
+
+    }
+
+    @PostMapping("/edit")
+    public ResponseEntity<?> edit(@RequestPart(required = true) Event e,
+            @RequestPart(value = "file", required = false) final MultipartFile file) {
+
+        if (!file.isEmpty()) {
+            if (!file.getContentType()
+                    .equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+                throw new LibbeleException("Erreur Fatale");
+            }
+            e.setFileLink(file.getOriginalFilename());
+        }
+
+        Event event = eService.editEvent(e);
+        if (!file.isEmpty()) {
+            try {
+                Files.write(Paths.get(path + "/" + event.getId() + "_" + event.getFileLink()), file.getBytes());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return new ResponseEntity<String>("bay", HttpStatus.OK);
+
+    }
+
+    @PostMapping("/planification")
+    public ResponseEntity<?> addTheme(@Valid @RequestBody Event e, BindingResult result) {
+
+        ResponseEntity<?> errorMap = mapVAlidationErrorService.MapValidationService(result);
+        if (errorMap != null)
+            return errorMap;
+        Event event = eService.addEvent(e);
         return new ResponseEntity<Event>(event, HttpStatus.OK);
 
     }

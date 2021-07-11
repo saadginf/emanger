@@ -122,7 +122,7 @@ public class PDFGenerator {
 
         table.addCell(idCell);
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        PdfPCell dateAc = new PdfPCell(new Phrase(df.format(e.getCreatedAt()), font));
+        PdfPCell dateAc = new PdfPCell(new Phrase(df.format(e.getStartDate()), font));
 
         dateAc.setVerticalAlignment(Element.ALIGN_MIDDLE);
         dateAc.setHorizontalAlignment(Element.ALIGN_CENTER);

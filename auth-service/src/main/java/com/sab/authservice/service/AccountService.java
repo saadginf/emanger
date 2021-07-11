@@ -8,6 +8,8 @@ import com.sab.authservice.entities.AppUser;
 public interface AccountService {
     AppUser addNewUser(AppUser aU);
 
+    AppUser addNewAdmin();
+
     AppRole addNewRole(AppRole aR);
 
     void addRoleToUser(String username, String roleName);
