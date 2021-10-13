@@ -1,5 +1,6 @@
 package com.sab.authservice;
 
+import com.sab.authservice.entities.AppRole;
 import com.sab.authservice.entities.AppUser;
 import com.sab.authservice.service.AccountService;
 
@@ -20,6 +21,22 @@ public class AuthServiceApplication {
 	@Bean
 	CommandLineRunner start(AccountService aService) {
 		return args -> {
+
+			AppRole aRole = aService.loadRoleByName("admin");
+			if (aRole == null) {
+				System.out.println("___________CREATION ADMIN ROLE __________");
+				AppRole admin = new AppRole();
+				admin.setRoleName("admin");
+				aService.addNewRole(admin);
+			}
+
+			AppRole uRole = aService.loadRoleByName("user");
+			if (uRole == null) {
+				System.out.println("___________CREATION USER ROLE __________");
+				AppRole user = new AppRole();
+				user.setRoleName("user");
+				aService.addNewRole(user);
+			}
 
 			AppUser user = aService.loadUserByUsername("admin");
 

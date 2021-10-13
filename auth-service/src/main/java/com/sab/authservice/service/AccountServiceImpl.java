@@ -69,8 +69,16 @@ public class AccountServiceImpl implements AccountService {
         aU.setUsername("admin");
         aU.setPassword(passwordEncoder.encode("admin"));
         AppRole appRole = appRoleRepo.findByRoleName("admin");
+        AppRole userRole = appRoleRepo.findByRoleName("user");
         aU.getAppRoles().add(appRole);
+        aU.getAppRoles().add(userRole);
         return appUserRepo.save(aU);
+    }
+
+    @Override
+    public AppRole loadRoleByName(String name) {
+        // TODO Auto-generated method stub
+        return appRoleRepo.findByRoleName(name);
     }
 
 }
